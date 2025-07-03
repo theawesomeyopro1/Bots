@@ -24,9 +24,9 @@ PREFIX=!
   ```
 
 4. Run the bot:
-   ```bash
+```bash
 node index.js
-    ```
+```
 
 ## Folder Structure
 
