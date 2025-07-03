@@ -1,33 +1,32 @@
-# Ultimate Discord Bot (No AI Version)
+# Jarvis info.
 
-This is a full-featured Discord bot written in Node.js using `discord.js`.
+This is a full-featured Discord bot written in Node.js using `discord.js`, inspired from the marvel movies.
 
 ## Features
 
 ✅ Minigames (Rock-Paper-Scissors, Number Guessing)  
 ✅ Economy System (Balance, Daily Rewards)  
 ✅ Utility Commands (Ping, Help)  
-❌ No AI integration
 
 ## Setup
 
 1. Install dependencies:
-\`\`\`bash
+```bash
 npm install discord.js dotenv
-\`\`\`
+```
 
 2. Create a bot token from the [Discord Developer Portal](https://discord.com/developers/applications)
 
 3. Fill in the `.env` file:
-\`\`\`env
+  ```env
 TOKEN=YOUR_BOT_TOKEN
 PREFIX=!
-\`\`\`
+  ```
 
 4. Run the bot:
-\`\`\`bash
+   ```bash
 node index.js
-\`\`\`
+    ```
 
 ## Folder Structure
 
