@@ -1,9 +1,9 @@
-# Jarvis & Friday
+# 🤖 Discord Bots: Jarvis & Friday
 
 Welcome to the official repository for **Jarvis** and **Friday** — two custom Discord bots designed for fun, moderation, utilities, and more. This monorepo contains both bots in separate folders:
 
-- [`Jarvis`](/Jarvis/) — A powerful and flexible utility bot with a range of moderation and automation tools.
-- [`Friday`](/Friday/) — A lightweight and entertaining bot that offers games like Rock Paper Scissors, 8-Ball, and coin flips.
+- [`/Jarvis`](./Jarvis) — A powerful and flexible utility bot with a range of moderation and automation tools.
+- [`/Friday`](./Friday) — A lightweight and entertaining bot that offers games like Rock Paper Scissors, 8-Ball, and coin flips.
 
 ## 🧠 Features
 

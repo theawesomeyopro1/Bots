@@ -15,14 +15,14 @@ Jarvis is a multipurpose Discord bot built for server moderation, utility, and a
 ### 1. Clone this repo and install dependencies
 
 ```bash
-git clone https://github.com/theawesomeyopro1/Bots.git
-cd ~/Bots/Jarvis
-look through the python file and install the missing or required packages
+git clone https://github.com/your-username/your-repo.git
+cd your-repo/Jarvis
+pip install -r requirements.txt
 ```
 
 ### 2. Configure your environment
 
-Edit `.env` file with the following:
+Create a `.env` file with the following:
 
 ```env
 JARVIS_TOKEN=your_discord_bot_token
@@ -38,7 +38,7 @@ python main.py
 
 - `discord.py`
 - `python-dotenv`
-- `flask`
+
 ## 🤝 Contributing
 
 Feel free to fork and open pull requests. Suggestions are welcome!
