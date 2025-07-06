@@ -1,0 +1,9 @@
+discord.py
+Flask
+python-dotenv
+asyncio 
+subprocess
+os
+re
+datetime 
+threading
