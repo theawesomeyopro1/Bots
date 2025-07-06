@@ -1,8 +1,7 @@
 discord.py
 Flask
 python-dotenv
-asyncio 
-subprocess
+asyncio
 os
 re
 datetime 
