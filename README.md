@@ -28,9 +28,19 @@ Each bot has its own README with setup instructions. Navigate to:
 ## 📁 Structure
 
 ```
-/Jarvis     # Main utility bot
-/Friday     # Fun and game-focused bot
-README.md   # This file
+├── BOTS/
+│   ├── Friday/
+│   │   ├── .env
+│   │   ├── main.py
+│   │   └── README.md
+│   └── Jarvis/
+│       ├── .env
+│       ├── main.py
+│       └── README.md
+├── .gitignore
+├── main.py
+└── README.md
+
 ```
 
 ## ⚖️ License
