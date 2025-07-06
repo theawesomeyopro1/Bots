@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # ===== Load environment variables =====
 load_dotenv()
-TOKEN = os.getenv("DISCORD_TOKEN")  # from .env
+TOKEN = os.getenv("DISCORD_TOKEN")
 LOG_CHANNEL_ID = int(os.getenv("LOG_CHANNEL_ID", "0"))
 
 # ===== Flask keep-alive server =====
@@ -52,17 +52,14 @@ async def on_message(message):
     if not content.startswith("hey jarvis"):
         return
 
-    command = re.sub(r"^hey jarvis[,.]?", "", message.content, flags=re.I).strip()
+    command = re.sub(r"^hey jarvis[,.]?", "", message.content, flags=re.I).strip().lower()
 
-    # === Help Embed ===
-    if any(phrase in command for phrase in [
-        "help", 
-        "i need help using you", 
-        "how do i use you", 
-        "what can you do", 
-        "commands", 
-        "assist me"
-    ]):
+    help_phrases = [
+        "help", "i need help using you", "how do i use you",
+        "what can you do", "commands", "assist me"
+    ]
+
+    if command in help_phrases:
         embed = discord.Embed(
             title="🛡️ Jarvis Moderation Commands",
             description="Here’s what I can do for you, sir:",
@@ -76,7 +73,7 @@ async def on_message(message):
         embed.set_footer(text="Permissions required: Manage Messages, Kick, or Ban Members")
         return await message.reply(embed=embed)
 
-    elif "mute" in command:
+    elif command.startswith("mute"):
         if not message.author.guild_permissions.manage_messages:
             return await message.reply("You lack the necessary clearance to mute, sir.")
 
@@ -102,7 +99,7 @@ async def on_message(message):
         else:
             await message.reply("I'm afraid I couldn't identify who to mute, sir.")
 
-    elif "unmute" in command:
+    elif command.startswith("unmute"):
         if not message.author.guild_permissions.manage_messages:
             return await message.reply("You lack the clearance to unmute, sir.")
 
@@ -118,7 +115,7 @@ async def on_message(message):
         else:
             await message.reply("I cannot locate that user, sir.")
 
-    elif "kick" in command:
+    elif command.startswith("kick"):
         if not message.author.guild_permissions.kick_members:
             return await message.reply("That command is restricted, sir.")
 
@@ -135,7 +132,7 @@ async def on_message(message):
         else:
             await message.reply("I cannot locate that user, sir.")
 
-    elif "ban" in command:
+    elif command.startswith("ban"):
         if not message.author.guild_permissions.ban_members:
             return await message.reply("Regrettably, you do not possess ban privileges, sir.")
 
@@ -152,17 +149,17 @@ async def on_message(message):
         else:
             await message.reply("I cannot locate that user, sir.")
 
-    elif "purge" in command:
+    elif command.startswith("purge"):
         if not message.author.guild_permissions.manage_messages:
             return await message.reply("You lack the authorization to purge messages, sir.")
 
         match = re.search(r"purge (\d+)", command)
         if match:
             amount = int(match.group(1))
-            amount = max(1, min(100, amount))  # Clamp between 1 and 100
+            amount = max(1, min(100, amount))
 
             try:
-                deleted = await message.channel.purge(limit=amount + 1)  # +1 to include the command itself
+                deleted = await message.channel.purge(limit=amount + 1)
                 confirmation = await message.channel.send(f"🧹 Successfully purged {len(deleted) - 1} messages, sir.")
                 await asyncio.sleep(3)
                 await confirmation.delete()
@@ -192,26 +189,17 @@ async def on_message_delete(message):
         image_attachments = [a for a in message.attachments if a.content_type and a.content_type.startswith("image/")]
         if image_attachments:
             embed.set_image(url=image_attachments[0].url)
-
             if len(image_attachments) > 1:
-                other_images = image_attachments[1:]
                 embed.add_field(
-                    name=f"Other Images ({len(other_images)})",
-                    value="\n".join(f"[{a.filename}]({a.url})" for a in other_images),
+                    name=f"Other Images ({len(image_attachments) - 1})",
+                    value="\n".join(f"[{a.filename}]({a.url})" for a in image_attachments[1:]),
                     inline=False,
                 )
-
-            non_image_attachments = [a for a in message.attachments if a not in image_attachments]
-            if non_image_attachments:
-                embed.add_field(
-                    name=f"Other Attachments ({len(non_image_attachments)})",
-                    value="\n".join(f"[{a.filename}]({a.url})" for a in non_image_attachments),
-                    inline=False,
-                )
-        else:
+        non_images = [a for a in message.attachments if a not in image_attachments]
+        if non_images:
             embed.add_field(
-                name=f"Attachments ({len(message.attachments)})",
-                value="\n".join(f"[{a.filename}]({a.url})" for a in message.attachments),
+                name=f"Other Attachments ({len(non_images)})",
+                value="\n".join(f"[{a.filename}]({a.url})" for a in non_images),
                 inline=False,
             )
 
