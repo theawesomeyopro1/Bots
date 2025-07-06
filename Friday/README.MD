@@ -15,12 +15,12 @@ Friday is a fun-focused Discord bot designed to entertain users through simple g
 ### 1. Clone the repo and install dependencies
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo/Friday
-pip install -r requirements.txt
+git clone https://github.com/theawesomeyopro1/Bots.git
+cd ~/Bots/Friday
+look through the python file and install missing or required packages
 ```
 
-### 2. Add a `.env` file
+### 2. Edit the `.env` file
 
 ```env
 FRIDAY_TOKEN=your_discord_bot_token
