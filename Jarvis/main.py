@@ -1,6 +1,7 @@
 import os
 import re
 import discord
+import asyncio
 from datetime import datetime, timedelta, timezone
 from flask import Flask
 from threading import Thread
@@ -71,6 +72,7 @@ async def on_message(message):
         embed.add_field(name="Unmute", value="`hey jarvis, unmute @user`", inline=False)
         embed.add_field(name="Kick", value="`hey jarvis, kick @user for spamming`", inline=False)
         embed.add_field(name="Ban", value="`hey jarvis, ban @user for violating rules`", inline=False)
+        embed.add_field(name="Purge", value="`hey jarvis, purge 25` — Deletes the last 25 messages", inline=False)
         embed.set_footer(text="Permissions required: Manage Messages, Kick, or Ban Members")
         return await message.reply(embed=embed)
 
@@ -149,6 +151,25 @@ async def on_message(message):
                 await message.reply(f"Failed to ban. I encountered an error, sir: {e}")
         else:
             await message.reply("I cannot locate that user, sir.")
+
+    elif "purge" in command:
+        if not message.author.guild_permissions.manage_messages:
+            return await message.reply("You lack the authorization to purge messages, sir.")
+
+        match = re.search(r"purge (\d+)", command)
+        if match:
+            amount = int(match.group(1))
+            amount = max(1, min(100, amount))  # Clamp between 1 and 100
+
+            try:
+                deleted = await message.channel.purge(limit=amount + 1)  # +1 to include the command itself
+                confirmation = await message.channel.send(f"🧹 Successfully purged {len(deleted) - 1} messages, sir.")
+                await asyncio.sleep(3)
+                await confirmation.delete()
+            except Exception as e:
+                await message.reply(f"Regrettably, I couldn't complete the purge, sir: {e}")
+        else:
+            await message.reply("Please specify how many messages you'd like me to purge, sir. Example: `hey jarvis, purge 10`")
 
     else:
         await message.reply("I'm afraid I don't recognize that request, sir.")
