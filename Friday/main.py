@@ -166,12 +166,28 @@ async def on_message(message):
         return
 
     if "help" in command or "commands" in command:
-        await message.reply(
-            "**Friday's Fun Commands**\n"
-            "`hey friday, let's play rock paper scissors for 3` - Start an RPS game\n"
-            "`hey friday, let's play 8ball` - Magic 8-ball\n"
-            "`hey friday, flip a coin` - Coin flip"
+        embed = discord.Embed(
+            title="Friday Help Menu",
+            description="Here are the available commands you can use with Friday:",
+            color=discord.Color.blurple()
         )
+        embed.add_field(
+            name="🎮 Rock Paper Scissors",
+            value="`hey friday, let's play rock paper scissors for [rounds]`\nPlay an RPS game. Default rounds: 3.",
+            inline=False
+        )
+        embed.add_field(
+            name="🎱 Magic 8-Ball",
+            value="`hey friday, let's play 8ball`\nAsk a yes/no question and get a mysterious response.",
+            inline=False
+        )
+        embed.add_field(
+            name="🪙 Coin Flip",
+            value="`hey friday, flip a coin`\nFlip a virtual coin.",
+            inline=False
+        )
+        embed.set_footer(text="Friday Bot • Your loyal assistant")
+        await message.channel.send(embed=embed)
         return
 
     await message.reply("I'm afraid I don't recognize that request, sir.")
