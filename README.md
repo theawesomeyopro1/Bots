@@ -1,59 +1,38 @@
-# Jarvis - Your All-in-One Discord Assistant 🤖
+# 🤖 Discord Bots: Jarvis & Friday
 
-A single-file, Python-based Discord bot inspired by Marvel’s Jarvis.  
-Commands are triggered by starting messages with **"hey Jarvis,"** or **"hey Jarvis."**
+Welcome to the official repository for **Jarvis** and **Friday** — two custom Discord bots designed for fun, moderation, utilities, and more. This monorepo contains both bots in separate folders:
 
----
+- [`/Jarvis`](./Jarvis) — A powerful and flexible utility bot with a range of moderation and automation tools.
+- [`/Friday`](./Friday) — A lightweight and entertaining bot that offers games like Rock Paper Scissors, 8-Ball, and coin flips.
 
-## Features
+## 🧠 Features
 
-- 🎲 Play Rock-Paper-Scissors  
-- 🎱 Magic 8-Ball game (`hey Jarvis. let's play 8ball, <question>`)  
-- 🛡️ Moderation commands: mute, unmute, kick, ban (permission-restricted)  
-- 💬 Utility commands: ping, balance (dummy), say  
-- 🗑️ Logs deleted messages (text + attachments) in a configurable channel with neat embeds  
-- 📝 Permissions checks with Jarvis-style polite responses  
+### ✅ Jarvis
+- Moderation commands (kick, ban, mute, etc.)
+- Server utilities (polls, reminders, timers)
+- Customizable prefix and command system
 
----
+### 🎮 Friday
+- Play Rock Paper Scissors in a private channel
+- Ask the magic 8-ball
+- Flip a coin
+- Fun, themed replies and embeds
 
-## Setup & Run
+## 🚀 Getting Started
 
-1. Install dependencies:
+Each bot has its own README with setup instructions. Navigate to:
 
-        pip install -U discord.py
+- [`/Jarvis/README.md`](./Jarvis/README.md)
+- [`/Friday/README.md`](./Friday/README.md)
 
-2. Create a Discord bot via the [Discord Developer Portal](https://discord.com/developers/applications) and get its token.
+## 📁 Structure
 
-3. Update the bot code:
-   - Replace `YOUR_BOT_TOKEN_HERE` with your bot token
-   - Replace `LOG_CHANNEL_ID` with your log channel ID for deleted message logs
+```
+/Jarvis     # Main utility bot
+/Friday     # Fun and game-focused bot
+README.md   # This file
+```
 
-4. Run the bot:
+## ⚖️ License
 
-        python jarvis_bot.py
-
----
-
-## Usage Examples
-
-    hey Jarvis, ping  
-    hey Jarvis, mute @user for 5 minutes  
-    hey Jarvis, kick @user for spamming  
-    hey Jarvis, ban @user for being rude  
-    hey Jarvis, unmute @user  
-    hey Jarvis, say Hello, world!  
-    hey Jarvis. let's play 8ball, will I ace my exams?  
-    hey Jarvis, rock
-
----
-
-## Notes
-
-- Moderation commands require appropriate Discord permissions.  
-- Bot responds only when commands start with `"hey Jarvis,"` or `"hey Jarvis."`.  
-- Deleted messages get logged with attachments to the configured channel.
-
----
-
-Made with ❤️ by you, inspired by Jarvis from Marvel.  
-Enjoy commanding your own AI assistant on Discord!
+This project is licensed under the MIT License.
